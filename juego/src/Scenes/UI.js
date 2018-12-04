@@ -12,22 +12,31 @@ export default class UIScene extends Phaser.Scene {
 
   preload () {
     this.load.audio("winner", 'assets/audio/winner.wav');
+    this.load.audio("looser", 'assets/audio/gameover.mp3')
+    this.load.bitmapFont('desyrel', 'assets/fonts/desyrel.png', 'assets/fonts/desyrel.xml');
   }
 
   create () {
     
     //create audio winner
     this.musicWinner = this.sound.add("winner");
+    this.musicLooser = this.sound.add("looser");
 
     // create SPACE text
     this.spaceText = this.add.text(12, 50, `Presiona SPACE para disparar`, { fontSize: '32px', fill: '#252850' });
     this.spaceText.visible = false;
 
     // create winner text
-    this.winnerText = this.add.text(180, 200, `¡Has rescatado a la princesa!`, { 
-      fontSize: '60px', 
-      fill: '#f0f', 
-      backgroundColor: '#000'
+    this.winnerText = this.add.dynamicBitmapText(100, 370, 'desyrel', '¡HAS RESCATADO A LA PRINCESA!', 65);
+
+    this.tweens.add({
+      targets: this.winnerText,
+      scaleX: '+=.1',
+      scaleY: '+=.3',
+      duration: 800,
+      ease: 'Sine.easeInOut',
+      repeat: -1,
+      yoyo: true
     });
 
     this.winnerText.visible = false;
@@ -50,6 +59,7 @@ export default class UIScene extends Phaser.Scene {
       this.healthText.setText(`Vidas: ${health}`);
 
       if (gameOver) {
+        this.musicLooser.play();
         self.game.scene.keys.Game.musicGame.stop();
         this.gameScene.scene.restart();
         this.cameras.main.flash(500, 255, 0, 0);
