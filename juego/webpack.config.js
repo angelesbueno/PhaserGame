@@ -15,7 +15,6 @@ module.exports = {
         publicPath: '/build/',
         filename: 'project.bundle.js'
     },
-
     module: {
         rules: [
             {
