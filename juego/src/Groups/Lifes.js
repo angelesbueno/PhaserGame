@@ -5,7 +5,6 @@ export default class Lifes extends Phaser.Physics.Arcade.StaticGroup {
     super(world, scene, children);
     this.scene = scene;
     
-
     // add lifes to our group
     spriteArray.forEach((life) => {
       life.setScale(0.5);

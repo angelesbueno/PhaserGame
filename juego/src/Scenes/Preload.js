@@ -4,7 +4,7 @@ export default class PreloadScene extends Phaser.Scene {
     super(key);
   }
   preload() {
-    this.load.image('background', 'assets/images/backgroundZelda.jpg')
+
     for (var i = 0; i < 500; i++) {
       this.load.image('logo' + i, 'assets/images/logo.png');
     }
@@ -16,6 +16,7 @@ export default class PreloadScene extends Phaser.Scene {
 
     var width = this.cameras.main.width;
     var height = this.cameras.main.height;
+
     var loadingText = this.make.text({
       x: width / 2 - 5,
       y: height / 2 - 30,
@@ -39,30 +40,17 @@ export default class PreloadScene extends Phaser.Scene {
     percentText.setOrigin(0.5, 0.5);
 
     this.load.on('progress', function (value) {
-      //console.log(value);
       percentText.setText(parseInt(value * 100) + '%');
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
       progressBar.fillRect(550, 280, 300 * value, 30);
     });
 
-    this.load.on('fileprogress', function (file) {
-      //console.log(file.src);
-    });
-
     this.load.on('complete', function () {
       console.log('complete');
-      //progressBar.destroy();
-      //progressBox.destroy();
-      //loadingText.destroy();
-      //percentText.destroy();
     });
   }
   create() {
     this.scene.start('Boot');
-    //this.scene.stop();
-    // this.image = this.add.image(0, 0, 'background');
-    // this.image.setOrigin(0, 0);
-    // this.image.setScale(1.05);
   }
 }

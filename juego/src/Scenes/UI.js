@@ -7,7 +7,6 @@ export default class UIScene extends Phaser.Scene {
 
   init () {
     this.lifesCollected = 0;
-    
   }
 
   preload () {
@@ -18,7 +17,7 @@ export default class UIScene extends Phaser.Scene {
 
   create () {
     
-    //create audio winner
+    //create winner and looser audios
     this.musicWinner = this.sound.add("winner");
     this.musicLooser = this.sound.add("looser");
 
@@ -48,7 +47,6 @@ export default class UIScene extends Phaser.Scene {
     // get a reference to the game scene
     this.gameScene = this.scene.get('Game');
     
-
     // listen for events from that scene
     this.gameScene.events.on('lifeCollected', (health, gameOver) => {
       this.lifesCollected++;
@@ -84,7 +82,5 @@ export default class UIScene extends Phaser.Scene {
           self.game.scene.keys.Game.scene.restart();}, 6000);
       }
     });
-
-
   }
 };

@@ -10,7 +10,6 @@ export default class GameScene extends Phaser.Scene {
   }
 
   init(data) {
-    //this.gameOver = true;
     this._NEWGAME = data.newGame;
     this.events.emit('newGame');
   }
@@ -109,7 +108,6 @@ export default class GameScene extends Phaser.Scene {
 
     // add lava background
     this.add.tileSprite(0, 0, 8000, 8000, 'lava', 0);
-    //this.cameras.main.setBackgroundColor('#f96000')
 
     // create the tilemap
     this.map = this.make.tilemap({ key: 'map' });
@@ -146,7 +144,4 @@ export default class GameScene extends Phaser.Scene {
       }
     });
   }
-
-
-
 };

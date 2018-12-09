@@ -33,7 +33,6 @@ export default class TitleScene extends Phaser.Scene {
 
     this.tweens.add({
       targets: this.startText,
-      //scaleX: '+=.1',
       scaleY: '+=.3',
       duration: 800,
       ease: 'Sine.easeInOut',
